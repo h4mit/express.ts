@@ -1,0 +1,224 @@
+.welcome-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #00b8e6;
+    z-index: 1;
+    animation: moveTop 2s 6s forwards;
+  }
+  
+  .content {
+    user-select: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    font-size: 5vw;
+    font-family: 'Verdana';
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: opacity 2s 2s forwards 1 ease-in-out;
+    position: relative;
+  }
+  .content p {
+    position: relative;
+    width: 70%;
+    text-align: center;
+    opacity: 1;
+  }
+  .content span {
+    animation: backToPosition 2s 2s forwards 1 ease-in-out;
+    position: relative;
+  }
+  .content span:nth-of-type(1) {
+    top: -70px;
+    left: -40px;
+  }
+  .content span:nth-of-type(2) {
+    top: 20px;
+    left: -50px;
+  }
+  .content span:nth-of-type(3) {
+    top: -50px;
+    left: 0px;
+  }
+  .content span:nth-of-type(4) {
+    top: -90px;
+    left: -40px;
+  }
+  .content span:nth-of-type(5) {
+    top: 100px;
+    left: -10px;
+  }
+  .content span:nth-of-type(6) {
+    top: -60px;
+    left: 20px;
+  }
+  .content span:nth-of-type(7) {
+    top: -80px;
+    left: 70px;
+  }
+  
+  .greeting {
+    user-select: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8vh;
+    font-size: 1.5vw;
+    font-family: 'Verdana';
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: opacity 2s 2s forwards 1 ease-in-out;
+    position: relative;
+  }
+  .greeting p {
+    position: relative;
+    width: 80%;
+    text-align: center;
+    opacity: 1;
+  }
+  
+  .gameButton {
+    letter-spacing: 2px;
+    text-align: center;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Verdana';
+    position: absolute;
+    bottom: 20%;
+    left: 35%;
+    transform: translate(-50%, 0);
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    background-size: 300%;
+    background-position: left;
+    transition: all .5s;
+    animation: opacity 2s 4.5s forwards 1;
+    opacity: 0;
+  }
+  .gameButton:hover {
+    background-position: right;
+    color: #ffb3d9;
+  }
+  
+  .statsButton {
+    letter-spacing: 2px;
+    text-align: center;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Verdana';
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    background-size: 300%;
+    background-position: left;
+    transition: all .5s;
+    animation: opacity 2s 4.5s forwards 1;
+    opacity: 0;
+  }
+  .statsButton:hover {
+    background-position: right;
+    color: #ffb3d9;
+  }
+  
+  .logoutButton {
+    letter-spacing: 2px;
+    text-align: center;
+    border: 2px solid white;
+    color: white;
+    font-family: 'Verdana';
+    position: absolute;
+    bottom: 20%;
+    left: 65%;
+    transform: translate(-50%, 0);
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    background-size: 300%;
+    background-position: left;
+    transition: all .5s;
+    animation: opacity 2s 4.5s forwards 1;
+    opacity: 0;
+  }
+  .logoutButton:hover {
+    background-position: right;
+    color: #ffb3d9;
+  }
+  
+  @keyframes moveToLeft {
+    from {
+      right: 0%;
+    }
+    50% {
+      opacity: .3;
+    }
+    to {
+      right: 100%;
+      opacity: 0;
+    }
+  }
+  @keyframes moveToRight {
+    from {
+      right: 100%;
+    }
+    50% {
+      opacity: .3;
+    }
+    to {
+      right: 0%;
+      opacity: 0;
+    }
+  }
+  @keyframes scale {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.2);
+      opacity: 0.9;
+    }
+  }
+  @keyframes opacity {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes backToPosition {
+    to {
+      left: 0;
+      top: 0;
+    }
+  }
+  @keyframes rightToLeft {
+    0% {
+      opacity: 0;
+      transform: translate(-35%, 0) scale(2);
+    }
+    10% {
+      opacity: .01;
+    }
+    50% {
+      opacity: .5;
+    }
+    90% {
+      opacity: .01;
+    }
+    100% {
+      transform: translate(-65%, 0) scale(2);
+      opacity: 0;
+    }
+  }
+  
