@@ -1,0 +1,11 @@
+{
+    "verbose": true,
+    "watch": [
+        "server/**/*.ts"
+    ],
+    "ext": "ts js json",
+    "ignore": [
+        "server/**/*.spec.ts"
+    ],
+    "exec": "ts-node server/index.ts"
+}
