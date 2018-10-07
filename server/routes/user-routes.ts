@@ -1,53 +1,31 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
+import { UserController } from "../controllers/user.controller";
 
-export class Routes {    
-    
-    public routes(app): void {   
-        
+export class Routes {
+    public userController: UserController = new UserController();
+
+    public routes(app): void {
+
         app.route('/')
-        .get((req: Request, res: Response) => {            
-            res.status(200).send({
-                message: 'GET request successfulll!!!!'
+            .get((req: Request, res: Response) => {
+                res.status(200).send({
+                    status: true,
+                    response: {
+                        message: 'welcome to resfulAPI - Express.TS!!!!'
+                    }
+                })
             })
-        })
-        
-        // User 
-        app.route('/users') 
-        // GET endpoint 
-        .get((req: Request, res: Response) => {
-        // Get all users            
-            res.status(200).send({
-                message: 'GET request successfulll!!!!'
-            })
-        })        
-        // POST endpoint
-        .post((req: Request, res: Response) => {   
-        // Create new user         
-            res.status(200).send({
-                message: 'POST request successfulll!!!!'
-            })
-        })
+
+        // GET - all Users 
+        app.route('/users').get(this.userController.getUsers)
+
+        // POST endpoint - Add new User
+        app.route('/user').post(this.userController.addNewUser)
 
         // User detail
         app.route('/user/:userID')
-        // get specific user
-        .get((req: Request, res: Response) => {
-        // Get a single user detail            
-            res.status(200).send({
-                message: 'GET request successfulll!!!!'
-            })
-        })
-        .put((req: Request, res: Response) => {
-        // Update a user           
-            res.status(200).send({
-                message: 'PUT request successfulll!!!!'
-            })
-        })
-        .delete((req: Request, res: Response) => {       
-        // Delete a user     
-            res.status(200).send({
-                message: 'DELETE request successfulll!!!!'
-            })
-        })
+            .get(this.userController.getUserWithID)
+            .put(this.userController.updateUser)
+            .delete(this.userController.deleteContact)
     }
 }
