@@ -51,6 +51,19 @@ The default URL is: *http://localhost:3000/users*
 
 + GET all users
 
++ Post register new user   *https://localhost:3000/user*
+
+```
+{
+    "username": "h4mit",
+    "firstName": "Hamid",
+    "lastName": "Taheri",
+    "email": "h4mit@aroin.ir",
+    "password": "h4mith4mit"
+}
+
+```
+
 ```
 Send GET request to http://localhost:3000/users/
 ```

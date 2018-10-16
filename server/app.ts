@@ -1,26 +1,29 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import { Routes } from "./routes/user-routes";
+import { UserRoutes } from "./routes/user-routes";
 import * as mongoose from "mongoose";
 import * as path from 'path';
+require('./config/passport');
 
 
 class App {
 
     public app: express.Application;
-    public routePrv: Routes = new Routes();
+    public routePrv: UserRoutes = new UserRoutes();
     public mongoUrl: string = 'mongodb://localhost:27017/EXTS';
 
 
     constructor() {
         this.app = express();
         this.config();
-        this.routePrv.routes(this.app);
         this.mongoSetup();
+        this.databaseGenerate();
+        this.routePrv.routes(this.app);
         this.views();
     }
 
     private config(): void {
+        this.app.use(require('morgan')('dev'));
         // support application/json type post data
         this.app.use(bodyParser.json());
         //support application/x-www-form-urlencoded post data
@@ -30,7 +33,13 @@ class App {
 
     private mongoSetup(): void {
         mongoose.Promise = global.Promise;
-        mongoose.connect(this.mongoUrl, { useNewUrlParser: true });
+        mongoose.connect(this.mongoUrl, { 
+            useCreateIndex: true,
+            useNewUrlParser: true });
+    }
+
+    private databaseGenerate(): void {
+        require('./models/user.model');
     }
 
     private views(): void {

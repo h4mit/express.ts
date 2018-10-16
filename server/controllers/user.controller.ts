@@ -1,18 +1,19 @@
 import * as mongoose from 'mongoose';
-import { UserSchema } from '../models/user.model';
 import { Request, Response } from 'express';
+import User from '../models/user.model';
 
-const User = mongoose.model('User', UserSchema);
+
 export class UserController {
 
     public addNewUser(req: Request, res: Response) {
         let newUser = new User(req.body);
+        newUser.setPassword(req.body.password);
 
         newUser.save((err, user) => {
             if (err) {
                 res.send(err);
             }
-            res.json(user);
+          return res.json({user: newUser.toAuthJSON()});
         });
     }
 

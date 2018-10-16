@@ -1,13 +1,13 @@
-import { Request, Response } from "express";
 import { UserController } from "../controllers/user.controller";
 
-export class Routes {
+var auth = require('../auth');
+export class UserRoutes {
     public userController: UserController = new UserController();
 
     public routes(app): void {
 
         // GET - all Users 
-        app.route('/users').get(this.userController.getUsers)
+        app.route('/users', auth.required).get(this.userController.getUsers)
 
         // POST endpoint - Add new User
         app.route('/user').post(this.userController.addNewUser)
