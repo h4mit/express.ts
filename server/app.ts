@@ -1,15 +1,17 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import { UserRoutes } from "./routes/user-routes";
+import { Routes } from "./routes";
 import * as mongoose from "mongoose";
 import * as path from 'path';
+
+var router = require('express').Router();
 require('./config/passport');
 
 
 class App {
 
     public app: express.Application;
-    public routePrv: UserRoutes = new UserRoutes();
+    public routePrv: Routes = new Routes();
     public mongoUrl: string = 'mongodb://localhost:27017/EXTS';
 
 
@@ -20,6 +22,7 @@ class App {
         this.databaseGenerate();
         this.routePrv.routes(this.app);
         this.views();
+        this.pConfig();
     }
 
     private config(): void {
@@ -31,11 +34,27 @@ class App {
         this.app.use('/', express.static(path.join(__dirname, '../view')));
     }
 
+    private pConfig(): void {
+        this.app.use(function (err, req, res, next) {
+            console.log(err.stack);
+
+            res.status(err.status || 500);
+
+            res.json({
+                'errors': {
+                    message: err.message,
+                    error: err
+                }
+            });
+        });
+    }
+
     private mongoSetup(): void {
         mongoose.Promise = global.Promise;
-        mongoose.connect(this.mongoUrl, { 
+        mongoose.connect(this.mongoUrl, {
             useCreateIndex: true,
-            useNewUrlParser: true });
+            useNewUrlParser: true
+        });
     }
 
     private databaseGenerate(): void {

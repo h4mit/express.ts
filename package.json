@@ -27,6 +27,7 @@
   "homepage": "https://github.com/h4mit/express.ts#readme",
   "dependencies": {
     "@types/express": "^4.16.0",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "errorhandler": "^1.5.0",
     "express": "^4.16.3",
@@ -37,6 +38,7 @@
     "mongoose": "^5.3.1",
     "mongoose-unique-validator": "^2.0.2",
     "morgan": "^1.9.1",
+    "nodemailer": "^4.6.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
   },
