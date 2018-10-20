@@ -47,11 +47,11 @@ npm run prod
 
 ## Testing over HTTP 
 
-The default URL is: *http://localhost:3000/users*
+The default URL is: *http://127.0.0.1:3000/users*
 
 + GET all users
 
-+ Post register new user   *https://localhost:3000/user*
++ Post register new user   *https://127.0.0.1:3000/user*
 
 ```
 {
@@ -59,18 +59,20 @@ The default URL is: *http://localhost:3000/users*
     "firstName": "Hamid",
     "lastName": "Taheri",
     "email": "h4mit@aroin.ir",
-    "password": "h4mith4mit"
+    "password": "h4mith4mit",
+    "role": "admin",
+    "permissions": ["REPORT", "EDIT_USER"]
 }
 
 ```
 
 ```
-Send GET request to http://localhost:3000/users/
+Send GET request to https://127.0.0.1:3000/users/
 ```
 
 ## Testing over HTTPs 
 
-The default URL is: *https://localhost:3000*
+The default URL is: *https://127.0.0.1:3000*
 
 The key and cert in the config folder is for testing purpose only. You should generate your own.
 

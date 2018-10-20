@@ -7,16 +7,16 @@ export class UserRoutes {
     public routes(app): void {
 
         // GET - all Users 
-        app.get('/users', auth.required, this.userController.getUsers)
+        app.route('/users').get(auth.required, this.userController.getUsers)
 
         // POST endpoint - Add new User
         app.route('/user').post(this.userController.addNewUser)
 
         // User detail
         app.route('/user/:userID')
-            .get(this.userController.getUserWithID)
-            .put(this.userController.updateUser)
-            .delete(this.userController.deleteContact)
+            .get(auth.required ,this.userController.getUserWithID)
+            .put(auth.required ,this.userController.updateUser)
+            .delete(auth.required ,this.userController.deleteContact)
     }
 }
 

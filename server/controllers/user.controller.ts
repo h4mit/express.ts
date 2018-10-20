@@ -29,7 +29,6 @@ export class UserController {
       
         passport.authenticate('local', {session: false}, function(err, user, info){
           if(err){ return next(err); }
-      
           if(user){
             user.token = user.generateJWT();
             return res.json({user: user.toAuthJSON()});
@@ -39,7 +38,8 @@ export class UserController {
         })(req, res, next);
     }
 
-    public getUsers(req: Request, res: Response) {
+    public getUsers(req: any, res: Response) {
+        //res
         User.find({}, (err, users) => {
             if (err) {
                 res.send(err);

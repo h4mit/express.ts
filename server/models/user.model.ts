@@ -33,6 +33,14 @@ var UserSchema = new Schema({
   phone: {
     type: Number
   },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
+  permissions: [{
+    type: String
+  }],
   created_date: {
     type: Date,
     default: Date.now
@@ -73,7 +81,9 @@ UserSchema.methods.toAuthJSON = function () {
     email: this.email,
     token: this.generateJWT(),
     bio: this.bio,
-    image: this.image
+    image: this.image,
+    role: this.role,
+    permissions: this.permissions
   };
 };
 
