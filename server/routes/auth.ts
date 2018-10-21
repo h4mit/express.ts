@@ -1,4 +1,5 @@
 import * as jwt from 'jsonwebtoken';
+import * as _ from 'lodash';
 
 var secret = require('../config').secret;
 
@@ -27,6 +28,19 @@ var auth = {
                 if (err) {
                     return res.status(401).json({success: false, message: 'Failed to authenticate token.'});
                 } else if(decoded.role == role){
+                    next();
+                } else {
+                    return res.status(401).json({success: false, message: 'Failed to authenticate permission.'});
+                }
+            });
+        }
+    },
+    HasPermissions: function(permissions) {
+        return function(req, res, next) {
+            jwt.verify(getTokenFromHeader(req), secret, function (err, decoded) {
+                if (err) {
+                    return res.status(401).json({success: false, message: 'Failed to authenticate token.'});
+                } else if(_.includes(decoded.permissions, permissions)){
                     next();
                 } else {
                     return res.status(401).json({success: false, message: 'Failed to authenticate permission.'});
