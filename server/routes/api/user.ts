@@ -1,24 +1,27 @@
+import * as express from "express";
 import { UserController } from "../../controllers/user.controller";
 var auth = require('../auth');
 
 export class UserRoutes {
     public userController: UserController = new UserController();
 
-    public routes(app): void {
-
+    public routes(): any {
+        const router = express.Router();
         // GET - all Users 
-        app.route('/users').get(auth.HasRole('admin'), this.userController.getUsers);
+        router.route('/list').get(auth.HasRole('admin'), this.userController.getUsers);
 
         // POST endpoint - Add new User
-        app.route('/user').post(this.userController.addNewUser);
+        router.route('/').post(this.userController.addNewUser);
 
-        app.route('/user/login').post(this.userController.login);
+        router.route('/login').post(this.userController.login);
 
         // User detail
-        app.route('/user/:userID')
+        router.route('/:userID')
             .get(auth.Auth ,this.userController.getUserWithID)
             .put(auth.Auth ,this.userController.updateUser)
             .delete(auth.Auth ,this.userController.deleteContact)
+
+        return router;
     }
 }
 
